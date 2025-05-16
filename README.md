@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # Port
 Hip Hop Hup
 =======
@@ -49,3 +50,6 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 
 To learn React, check out the [React documentation](https://reactjs.org/).
 >>>>>>> 083f6a6 (Initialize project using Create React App)
+=======
+# R
+>>>>>>> 98e613bb99f0304336bf7ef0228a04bd8d4982ea
