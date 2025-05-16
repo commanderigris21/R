@@ -147,7 +147,7 @@ interface BlogPost {
   excerpt: string;
   content: string;
   link: string;
-  imageColor: string;
+  imageBackground?: string; // <-- Add this line
 }
 
 const blogPosts: BlogPost[] = [
@@ -174,53 +174,11 @@ const blogPosts: BlogPost[] = [
       <p>The useState hook lets you add state to functional components:</p>
       <pre><code>import React, { useState } from 'react';
 
-function Counter() {
-  const [count, setCount] = useState(0);
-  
-  return (
-    <div>
-      <p>You clicked {count} times</p>
-      <button onClick={() => setCount(count + 1)}>
-        Click me
-      </button>
-    </div>
-  );
-}</code></pre>
-      
-      <h3>useEffect</h3>
-      <p>The useEffect hook lets you perform side effects in function components:</p>
-      <pre><code>import React, { useState, useEffect } from 'react';
-
-function Example() {
-  const [count, setCount] = useState(0);
-
-  // Similar to componentDidMount and componentDidUpdate:
-  useEffect(() => {
-    // Update the document title using the browser API
-    document.title = \\\`You clicked \\\${count} times\\\`;
   });
-
-  return (
-    <div>
-      <p>You clicked {count} times</p>
-      <button onClick={() => setCount(count + 1)}>
-        Click me
-      </button>
-    </div>
-  );
-}</code></pre>
       
       <h3>useContext</h3>
       <p>The useContext hook lets you subscribe to React context without introducing nesting:</p>
-      <pre><code>import React, { useContext } from 'react';
-
-const ThemeContext = React.createContext('light');
-
-function ThemedButton() {
-  const theme = useContext(ThemeContext);
-  return <button theme={theme}>I am styled by theme context!</button>;
-}</code></pre>
-      
+      <pre><code>import React, { useContext } from 'react';     
       <h2>Additional Hooks</h2>
       <p>React also provides several additional hooks like useReducer, useCallback, useMemo, useRef, and more. These hooks provide more specialized functionality for specific use cases.</p>
       
@@ -228,214 +186,10 @@ function ThemedButton() {
       <p>React Hooks provide a more direct API to React concepts you already know: props, state, context, refs, and lifecycle. They make it easier to reuse stateful logic between components and make your code more readable and maintainable.</p>
     `,
     link: '/blog/react-hooks',
-    imageColor: '#3182ce'
+    imageBackground: 'web.jpg'
   },
-  {
-    id: 2,
-    title: 'CSS Grid vs Flexbox: When to Use Each',
-    date: 'May 22, 2023',
-    excerpt: 'A comprehensive comparison of CSS Grid and Flexbox, with practical examples of when to use each layout system.',
-    content: `
-      <p>CSS Grid and Flexbox are two powerful layout systems in CSS. While they share some similarities, they're designed for different use cases. Understanding when to use each can significantly improve your web development workflow.</p>
-      
-      <h2>Flexbox: One-Dimensional Layout</h2>
-      <p>Flexbox is designed for one-dimensional layouts - either a row or a column. It's perfect for:</p>
-      <ul>
-        <li>Navigation menus</li>
-        <li>Card layouts with equal heights</li>
-        <li>Centering elements vertically and horizontally</li>
-        <li>Distributing space between items</li>
-      </ul>
-      
-      <p>Here's a basic example of Flexbox:</p>
-      <pre><code>.container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
 
-.item {
-  flex: 1;
-  margin: 10px;
-}</code></pre>
-      
-      <h2>CSS Grid: Two-Dimensional Layout</h2>
-      <p>CSS Grid is designed for two-dimensional layouts - rows and columns together. It's ideal for:</p>
-      <ul>
-        <li>Overall page layouts</li>
-        <li>Complex grid systems</li>
-        <li>Placing items in exact positions</li>
-        <li>Creating overlapping elements</li>
-      </ul>
-      
-      <p>Here's a basic example of CSS Grid:</p>
-      <pre><code>.container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 20px;
-}
 
-.item {
-  grid-column: span 2;
-}</code></pre>
-      
-      <h2>When to Use Flexbox</h2>
-      <p>Use Flexbox when:</p>
-      <ul>
-        <li>You need to align items within a container</li>
-        <li>You're working with a single row or column</li>
-        <li>You need flexible widths/heights that adapt to content</li>
-        <li>You want to distribute space between items</li>
-      </ul>
-      
-      <h2>When to Use CSS Grid</h2>
-      <p>Use CSS Grid when:</p>
-      <ul>
-        <li>You need to create a layout with both rows and columns</li>
-        <li>You want precise control over placement of items</li>
-        <li>You're creating a complex, asymmetrical layout</li>
-        <li>You need to overlap elements</li>
-      </ul>
-      
-      <h2>Using Them Together</h2>
-      <p>The real power comes when you use both together:</p>
-      <ul>
-        <li>Use Grid for the overall page layout</li>
-        <li>Use Flexbox for components within the grid</li>
-      </ul>
-      
-      <p>For example, you might use Grid to create a page with header, sidebar, main content, and footer areas. Then within the header, you might use Flexbox to align the logo, navigation, and user controls.</p>
-      
-      <h2>Conclusion</h2>
-      <p>Both Flexbox and CSS Grid are powerful tools in modern web development. By understanding their strengths and appropriate use cases, you can create more efficient, responsive, and maintainable layouts. Remember: Flexbox for one-dimensional layouts, Grid for two-dimensional layouts, and often the best approach is to use them together.</p>
-    `,
-    link: '/blog/css-grid-flexbox',
-    imageColor: '#805ad5'
-  },
-  {
-    id: 3,
-    title: 'TypeScript Best Practices for React Developers',
-    date: 'April 10, 2023',
-    excerpt: 'Discover the best practices for using TypeScript in your React projects to improve code quality and developer experience.',
-    content: `
-      <p>TypeScript has become increasingly popular in the React ecosystem, offering type safety and improved developer experience. Here are some best practices for using TypeScript with React.</p>
-      
-      <h2>Typing Component Props</h2>
-      <p>Always define interfaces for your component props:</p>
-      <pre><code>interface ButtonProps {
-  text: string;
-  onClick: () => void;
-  disabled?: boolean;
-  variant?: 'primary' | 'secondary' | 'tertiary';
-}
-
-const Button: React.FC<ButtonProps> = ({ 
-  text, 
-  onClick, 
-  disabled = false, 
-  variant = 'primary' 
-}) => {
-  return (
-    <button 
-      className={\`btn btn-\${variant}\`}
-      onClick={onClick}
-      disabled={disabled}
-    >
-      {text}
-    </button>
-  );
-};</code></pre>
-      
-      <h2>Use Type Inference When Possible</h2>
-      <p>Let TypeScript infer types when it can to reduce verbosity:</p>
-      <pre><code>// Instead of this
-const [count, setCount] = useState<number>(0);
-
-// Do this when initializing with a value
-const [count, setCount] = useState(0); // TypeScript infers number</code></pre>
-      
-      <h2>Type React Event Handlers Properly</h2>
-      <p>Use the correct event types for handlers:</p>
-      <pre><code>const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  setName(event.target.value);
-};
-
-const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-  event.preventDefault();
-  // form submission logic
-};</code></pre>
-      
-      <h2>Create Reusable Type Definitions</h2>
-      <p>For types used across multiple components, create separate type definition files:</p>
-      <pre><code>// types.ts
-export interface User {
-  id: string;
-  name: string;
-  email: string;
-  role: 'admin' | 'user';
-}
-
-export interface Post {
-  id: string;
-  title: string;
-  content: string;
-  authorId: string;
-  createdAt: Date;
-}</code></pre>
-      
-      <h2>Use Discriminated Unions for State</h2>
-      <p>For complex state with different modes, use discriminated unions:</p>
-      <pre><code>type State =
-  | { status: 'idle' }
-  | { status: 'loading' }
-  | { status: 'success'; data: User[] }
-  | { status: 'error'; error: string };
-
-const [state, setState] = useState<State>({ status: 'idle' });
-
-// Later in your code
-if (state.status === 'success') {
-  // TypeScript knows that state.data exists here
-  return <UserList users={state.data} />;
-}</code></pre>
-      
-      <h2>Type Custom Hooks Properly</h2>
-      <p>Ensure your custom hooks have proper return type annotations:</p>
-      <pre><code>function useUser(userId: string): { user: User | null; loading: boolean; error: Error | null } {
-  const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<Error | null>(null);
-  
-  useEffect(() => {
-    // Fetch user logic
-  }, [userId]);
-  
-  return { user, loading, error };
-}</code></pre>
-      
-      <h2>Use Generics for Reusable Components</h2>
-      <p>Make components more flexible with generics:</p>
-      <pre><code>interface ListProps<T> {
-  items: T[];
-  renderItem: (item: T) => React.ReactNode;
-}
-
-function List<T>({ items, renderItem }: ListProps<T>) {
-  return (
-    <ul>
-      {items.map((item, index) => (
-        <li key={index}>{renderItem(item)}</li>
-      ))}
-    </ul>
-  );
-}</code></pre>
-      
-      <h2>Conclusion</h2>
-      <p>Using TypeScript with React improves code quality, catches errors early, and enhances the developer experience. By following these best practices, you can make the most of TypeScript in your React projects while avoiding common pitfalls.</p>
-    `,
-    link: '/blog/typescript-react',
-    imageColor: '#dd6b20'
-  },
   {
     id: 4,
     title: 'Building Accessible Web Applications',
@@ -452,12 +206,6 @@ function List<T>({ items, renderItem }: ListProps<T>) {
         <li>It improves usability for all users</li>
         <li>It's the right thing to do</li>
       </ul>
-      
-      <h2>Semantic HTML</h2>
-      <p>Use semantic HTML elements that clearly describe their meaning to browsers and assistive technologies:</p>
-      <pre><code><!-- Instead of this -->
-<div class="header">
-  <div class="nav">
     <div class="nav-item">Home</div>
   </div>
 </div>
@@ -482,10 +230,6 @@ function List<T>({ items, renderItem }: ListProps<T>) {
       
       <h2>ARIA Attributes</h2>
       <p>Use ARIA (Accessible Rich Internet Applications) attributes when necessary:</p>
-      <pre><code><!-- Example of ARIA labels -->
-<button aria-label="Close dialog" onClick={closeDialog}>
-  X
-</button>
 
 <!-- Example of ARIA roles -->
 <div role="alert">
@@ -502,29 +246,6 @@ function List<T>({ items, renderItem }: ListProps<T>) {
       
       <h2>Images and Media</h2>
       <p>Make images and media accessible:</p>
-      <pre><code><!-- Add alt text to images -->
-<img src="logo.png" alt="Company Logo" />
-
-<!-- For decorative images -->
-<img src="decoration.png" alt="" role="presentation" />
-
-<!-- Provide captions for videos -->
-<video controls>
-  <source src="video.mp4" type="video/mp4" />
-  <track kind="captions" src="captions.vtt" srclang="en" label="English" />
-</video></code></pre>
-      
-      <h2>Forms</h2>
-      <p>Create accessible forms:</p>
-      <pre><code><!-- Use labels for form controls -->
-<label for="name">Name:</label>
-<input id="name" type="text" />
-
-<!-- Group related form elements -->
-<fieldset>
-  <legend>Contact Information</legend>
-  <!-- form fields here -->
-</fieldset>
 
 <!-- Provide error messages -->
 <input 
@@ -548,7 +269,7 @@ function List<T>({ items, renderItem }: ListProps<T>) {
       <p>Building accessible web applications is not just about compliance—it's about creating better experiences for all users. By incorporating these practices into your development workflow, you can ensure your applications are usable by as many people as possible.</p>
     `,
     link: '/blog/web-accessibility',
-    imageColor: '#38a169'
+    imageBackground: 'hook2.jpg'
   },
 ];
 
@@ -573,9 +294,6 @@ const BlogDetail: React.FC = () => {
         <BlogTitle>{post.title}</BlogTitle>
         <BlogDate>{post.date}</BlogDate>
       </BlogHeader>
-      
-      <BlogImage style={{ backgroundColor: post.imageColor }} />
-      
       <BlogContent dangerouslySetInnerHTML={{ __html: post.content }} />
       
       <ShareSection>

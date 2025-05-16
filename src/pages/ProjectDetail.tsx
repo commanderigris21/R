@@ -65,6 +65,19 @@ const ProjectDescription = styled.div`
     color: #4ecca3;
     text-decoration: underline;
   }
+
+  img {
+    display: block;
+    max-width: 100%;
+    max-height: 350px;
+    width: auto;
+    height: auto;
+    margin: 2rem auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 24px rgba(78, 204, 163, 0.15);
+    object-fit: contain;
+    background: #0a192f;
+  }
 `;
 
 const TechStack = styled.div`
@@ -135,7 +148,7 @@ const projects: Project[] = [
     title: 'Introvise-Your AI Interviewer',
     description: 'A fully responsive e-commerce platform.',
     technologies: ['React', 'Python', 'SpringBoot', 'MySQL'],
-    liveLink: 'https://project1.com',
+    liveLink: 'https://youtu.be/3xorPpc4Ud8?si=RdL2HpUNjJBzCxdd',
     githubLink: 'https://github.com/commanderigris21/IntroVise',
     imageBackground: '/SS.png', 
     fullDescription: `
@@ -239,7 +252,7 @@ npm run dev
     fullDescription: `
 ## Portfolio Website
 
-![Portfolio Screenshot](/image.png)
+![Portfolio Screenshot](/ss2.png)
 
 A modern, responsive personal portfolio website to showcase my projects, skills, and experience as a web developer.
 
@@ -272,7 +285,7 @@ This portfolio is designed to provide a seamless and engaging experience for vis
 
 ### 📸 Preview
 
-![Portfolio Preview](/image.png)
+![Portfolio Preview](/ss2.png)
 
 ---
 
@@ -282,7 +295,7 @@ Feel free to connect with me via the contact form on the website or through my s
 
 ---
 
-[🌐 Visit Portfolio](https://your-portfolio-link.com)
+
 `
   },
   // ... other projects as before
@@ -324,7 +337,7 @@ const ProjectDetail: React.FC = () => {
           <ProjectLink href={project.liveLink} target="_blank" rel="noopener noreferrer">
             Live Demo
           </ProjectLink>
-          <ProjectLink href={project.githubLink} target="_blank" rel="noopener noreferrer">
+          <ProjectLink href="https://github.com/commanderigris21/Port" target="_blank" rel="noopener noreferrer">
             GitHub Repository
           </ProjectLink>
         </ProjectLinks>
